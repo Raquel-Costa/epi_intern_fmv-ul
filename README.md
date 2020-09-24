@@ -1,4 +1,4 @@
-# Preparação Estágio Epidemiologia 💻
+# Preparação Estágio Epidemiologia 👩💻
 
 Este repositório contém tudo o que foi realizado por mim durante a preparação para o meu estágio curricular em epidemiologia.
 Contém o trabalho realizado durante 4 meses, entre Setembro e Dezembro de 2020.
