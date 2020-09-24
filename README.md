@@ -10,8 +10,10 @@ Contém o trabalho realizado durante 4 meses, entre Setembro e Dezembro de 2020.
   <li>Introdução aos sistemas de informação geográfica</li>
   <li>Desenvolvimento do pensamento crítico para a solução de problemas</li>
   <li>Desenvolvimento das vossas competências de apresentação de resultados</li>
+</ul>
 
 <strong>Análises Realizadas:</strong>
 <ul>
   <li>COVID19 em Portugal</li>
+</ul>
   
