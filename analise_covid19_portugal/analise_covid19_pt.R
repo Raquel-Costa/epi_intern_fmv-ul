@@ -364,7 +364,7 @@ ggplot(incidencia_regioes_melt, aes(x = data, y = valor*100, color = regiao)) +
 
 
 
-##INCIDÊNCIA POR Região
+##INCIDÊNCIA POR REGIÃO
 ###Definir intervalos para legenda
 bins_2 =  c(0, 0.002, 0.004, 0.006, 0.008, 0.01, 0.02, Inf)
 
