@@ -747,26 +747,26 @@ ggplotly(letalidade_tempo_grafico, add_tracey = "Letalidade")
 
 ##LETALIDADE POR GRUPO ETÁRIO E GÉNERO
 ###Tabela com número de casos confirmados por faixa etária por género
-casos_genero <- merge(casos_femininos_idade_invertido, casos_masculinos_idade_invertido, by = "Idade")
-casos_genero_total <-  merge(casos_genero, casos_total_idade_invertido, by = "Idade")
+casos_genero_idade <- merge(casos_femininos_idade_invertido, casos_masculinos_idade_invertido, by = "Idade")
+casos_genero_idade_total <-  merge(casos_genero_idade, casos_total_idade_invertido, by = "Idade")
 
 ###Tabela com número de óbitos por faixa etária por género
-mortes_genero <- merge(mortes_femininos_idade_invertido, mortes_masculinos_idade_invertido, by = "Idade")
-mortes_genero_total <-  merge(mortes_genero, mortes_total_idade_invertido, by = "Idade")
+mortes_genero_idade <- merge(mortes_femininos_idade_invertido, mortes_masculinos_idade_invertido, by = "Idade")
+mortes_genero_idade_total <-  merge(mortes_genero_idade, mortes_total_idade_invertido, by = "Idade")
 
 ###Criar tabela com uma coluna com as faixas etárioas e outra com a letalidade e dar nomes às colunas
-letalidade_genero <- cbind(casos_femininos_idade_invertido[,1], (mortes_genero_total[,2:4]/casos_genero_total[,2:4]))
-names(letalidade_genero) <- c("Idade", "Feminino", "Masculino", "Total")
+letalidade_genero_idade <- cbind(casos_femininos_idade_invertido[,1], (mortes_genero_idade_total[,2:4]/casos_genero_idade_total[,2:4]))
+names(letalidade_genero_idade) <- c("Idade", "Feminino", "Masculino", "Total")
 
 ###Fazer melt para poder fazer gráfico
-letalidade_genero_melt <- melt(letalidade_genero, id.vars = "Idade")
+letalidade_genero_idade_melt <- melt(letalidade_genero_idade, id.vars = "Idade")
 
 ###Fazer gráfico com idade no eixo do x, letalidade no eixo do y e faixa etária em cada linha
-letalidade_genero_grafico <- ggplot(letalidade_genero_melt, aes(x = Idade, y = value*100, color = variable, 
+letalidade_genero_idade_grafico <- ggplot(letalidade_genero_idade_melt, aes(x = Idade, y = value*100, color = variable, 
                                                                 tooltip = round(value*100, digits = 2), data_id = value)) +
   geom_point_interactive() +
   guides(color = FALSE) +
-  facet_grid(letalidade_genero_melt$variable) +
+  facet_grid(letalidade_genero_idade_melt$variable) +
   xlab("Faixa etária (anos)") +
   ylab("Letalidade (%)") +
   labs(title = "Letalidade por Faixa etária por género") +
@@ -776,7 +776,7 @@ letalidade_genero_grafico <- ggplot(letalidade_genero_melt, aes(x = Idade, y = v
   theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 20, l = 0), size = 15))
 
 ###Animar o gráfico 
-girafe(code = print(letalidade_genero_grafico),
+girafe(code = print(letalidade_genero_idade_grafico),
        options = list(
          opts_zoom(max = 5),
          opts_hover(css = "fill:black;")
@@ -912,6 +912,52 @@ ggplot(letalidade_regioes_tempo_melt, aes(x = Data, y = value*100, color = varia
 
 
 
+##LETALIDADE AJUSTADA À IDADE
+###Proporção de cada faixa etária nos casos confirmados
+percentagem_idades <- as.data.frame(casos_total_idade_invertido[,2]/last(data$confirmados))
+
+###Multiplicação da letalidade de cada faixa etária pela proporção dessa fixa etária nos confirmados
+cross_product_idade <- as.data.frame(letalidade_genero_idade[, 4]*percentagem_idades)
+
+###Criar uma tabela com uma coluna para a idade, outra para a letalidade por faixa etária, outra para a proporção de cada faixa etária e 
+###outra para o cross_product
+letalidade_ajustada_idade <- as.data.frame(cbind((letalidade_genero_idade[,c(1, 4)]), percentagem_idades, cross_product_idade))
+
+###Adicionar uma linha com o total sendo a coluna 4, última linha a letalidade ajustada
+total_letalidade_ajustada_idade = c("Total", NA, sum(letalidade_ajustada_idade[,3]), sum(letalidade_ajustada_idade[,4]))
+letalidade_ajustada_idade <- rbind(letalidade_ajustada_idade, total_letalidade_ajustada_idade)
+names(letalidade_ajustada_idade) = c("Idade", "Letalidade", "Proporção", "Cross Product")
+
+
+
+##LETALIDADE AJUSTADA AO SEXO
+###Número de casos por género
+casos_genero <-  as.data.frame(lapply(casos_genero_idade[,2:3], sum))
+
+###Proporção de cada género nos casos confirmados
+percentagem_genero <- as.data.frame(t(casos_genero/last(data$confirmados)))
+
+###Letalidade por género
+letalidade_fem = last(data$obitos_f)/last(data$confirmados_f)
+letalidade_masc = last(data$obitos_m)/last(data$confirmados_m)
+letalidade_genero <- as.data.frame(rbind(letalidade_fem, letalidade_masc))
+
+###Multiplicação da letalidade de cada género pela proporção desse género nos confirmados
+cross_product_genero <- as.data.frame(letalidade_genero*percentagem_genero)
+
+###Criar tabela para fazer coluna com género
+genero <- as.data.frame(c("Feminino", "Masculino"))
+
+###Criar uma tabela com uma coluna para o género, outra para a letalidade por género, outra para a proporção de cada género e 
+###outra para o cross_product
+letalidade_ajustada_genero <- as.data.frame(cbind(genero, letalidade_genero, percentagem_genero, cross_product_genero))
+
+###Adicionar uma linha com o total sendo a coluna 4, última linha a letalidade ajustada
+total_letalidade_ajustada_genero = c("Total", NA, sum(letalidade_ajustada_genero[,3]), sum(letalidade_ajustada_genero[,4]))
+letalidade_ajustada_genero <- rbind(letalidade_ajustada_genero, total_letalidade_ajustada_genero)
+names(letalidade_ajustada_genero) = c("Género", "Letalidade", "Proporção", "Cross Product")
+
+
 
 #RECUPERADOS 
 
@@ -969,6 +1015,17 @@ ggplot(internados_confirmados, aes(x = data, y =percentagem*100, color = interna
   theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 20), size = 15)) +
   theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 20, l = 0), size = 15)) +
   scale_x_date(breaks = "months", date_labels = "%B")
+
+
+
+# #CASOS DIÁRIOS CONFIRMADOS
+# ggplot(data[, c(1, 12)], aes(x = data, y = confirmados_novos))+
+#   geom_col()
+# #MORTES DIÁRIAS
+# mortes_diarias <- as.data.frame(cbind(data$data, as.data.frame(data$obitos - lag(data$obitos))))
+# names(mortes_diarias) = c("Data", "Mortes")
+# ggplot(mortes_diarias, aes(x = Data, y = Mortes)) +
+#   geom_col()
 
 
 
