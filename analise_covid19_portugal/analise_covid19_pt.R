@@ -73,7 +73,7 @@ sintomas_tempo <- as.data.frame((data[8:173,41:46]*data$confirmados[8:173])
 ###Acresecentar à tabela que criámos, uma coluna com as datas
 sintomas_tempo <- rbind(data[7, 41:46], sintomas_tempo)
 
-###É ainda necessário acrescentar a linha 7 pois como sãoo as primerias frequências a aparecer 
+###É ainda necessário acrescentar a linha 7 pois como são as primerias frequências a aparecer 
 ###já indicam a frequência específica para esse dia
 sintomas_tempo <- cbind(data$data[7:173], sintomas_tempo)
 
@@ -947,7 +947,7 @@ ggplot(internados, aes(x = data, y =value, color = variable)) +
 
 ##PERCENTAGEM DE INTERNADOS AO LONGO DO TEMPO
 ###Fazer melt para ter tabela com coluna da data, coluna do tipo de internamento e coluna com percentagem de internados
-###que sãoo os internados a dividir pelos confirmados e dar nomes às colunas
+###que são os internados a dividir pelos confirmados e dar nomes às colunas
 internados_confirmados <- melt((cbind(data$data, (as.data.frame(lapply(data[,c(15, 16)], 
                                                   function(x) {x/data[, 3]}))))), id.vars = "data$data")
 names(internados_confirmados) <- c("data", "internados", "percentagem")
