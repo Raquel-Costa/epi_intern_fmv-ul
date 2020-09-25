@@ -334,7 +334,7 @@ norte = 3573961
 populacao_regioes <- as.data.frame(c(norte, centro, lisboa, alentejo, algarve, acores, madeira), 
                                   c("norte", "centro", "lisboa", "alentejo", "algarve", "Açoresres", "madeira"))
 
-###Fazer com que cada coluna seja uma Região e repetir cada número as vezes necessãorias para ficar com o número
+###Fazer com que cada coluna seja uma Região e repetir cada número as vezes necessárias para ficar com o número
 ###igual ao das colunas da base de dados
 populacao_regioes_rep <- as.data.frame(t(populacao_regioes[rep(seq_len(ncol(populacao_regioes)), each = nrow(data))]))
 
