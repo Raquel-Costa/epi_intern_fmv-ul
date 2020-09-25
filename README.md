@@ -9,7 +9,7 @@ Contém o trabalho realizado durante 4 meses, entre Setembro e Dezembro de 2020.
   <li>Aprendizagem e aplicação de conceitos mais avançados de epidemiologia</li>
   <li>Introdução aos sistemas de informação geográfica</li>
   <li>Desenvolvimento do pensamento crítico para a solução de problemas</li>
-  <li>Desenvolvimento das vossas competências de apresentação de resultados</li>
+  <li>Desenvolvimento das competências de apresentação de resultados</li>
 </ul>
 
 
