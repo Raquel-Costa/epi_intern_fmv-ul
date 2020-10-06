@@ -14,14 +14,13 @@ library(gganimate)
 library(plotly)
 library(RColorBrewer)
 library(sf)
-library(viridis)
 
 
 #Importar dados
-data <- fread("https://raw.githubusercontent.com/dssg-pt/data-data/master/data.csv")
+covid19 <- fread("https://raw.githubusercontent.com/dssg-pt/data-data/master/data.csv")
 
 #Data de data, de chr para Date
-data$data <- as.Date(data$data,"%d-%m-%Y")
+covid19$data <- as.Date(data$data,"%d-%m-%Y")
 
 #Dados da testagem
 data_testes <- fread("https://raw.githubusercontent.com/dssg-pt/data-data/master/amostras.csv")
@@ -32,8 +31,12 @@ data_testes$data <- as.Date(data_testes$data,"%d-%m-%Y")
 #Dados por concelho
 data_concelhos <- fread("https://raw.githubusercontent.com/dssg-pt/data-data/master/data_concelhos.csv")
 
-#Data de data_concelhos, de chr para Date
+#Data de data_concelhos, de chr para Datas
 data_concelhos$data <- as.Date(data_concelhos$data,"%d-%m-%Y")
+
+#teste
+me <- "ver se funciona"
+te <- 5+5
 
 #Mapa de Portugal Regiões
 mapa_pt <- geojson_read("https://raw.githubusercontent.com/dssg-pt/data-data/master/extra/mapas/portugal.geojson",
