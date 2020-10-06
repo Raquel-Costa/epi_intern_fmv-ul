@@ -5,7 +5,6 @@ library(grid)
 library(dplyr)
 library(tibble)
 library(reshape2)
-library(ggpubr)
 library(maps)
 library(ggiraph)
 library(leaflet)
@@ -32,8 +31,9 @@ data_testes$data <- as.Date(data_testes$data,"%d-%m-%Y")
 #Dados por concelho
 data_concelhos <- fread("https://raw.githubusercontent.com/dssg-pt/data-data/master/data_concelhos.csv")
 
-#Data de data_concelhos, de chr para Date
+#Data de data_concelhos, de chr para Datassssssss
 data_concelhos$data <- as.Date(data_concelhos$data,"%d-%m-%Y")
+me <- 7
 
 #Mapa de Portugal Regiões
 mapa_pt <- geojson_read("https://raw.githubusercontent.com/dssg-pt/data-data/master/extra/mapas/portugal.geojson",
