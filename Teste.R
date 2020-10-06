@@ -32,8 +32,6 @@ data_concelhos <- fread("https://raw.githubusercontent.com/dssg-pt/data-data/mas
 
 <<<<<<< HEAD
 #Data de data_concelhos, de chr para Datassssssss
-=======
-#Data de data_concelhos, de chr para Datas
 >>>>>>> 302b6887faa476f6c2d7cc01b020cabe4fd2e658
 data_concelhos$data <- as.Date(data_concelhos$data,"%d-%m-%Y")
 me <- 7
