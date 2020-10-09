@@ -15,6 +15,7 @@ library(plotly)
 library(RColorBrewer)
 library(sf)
 library(viridis)
+library(zoo)
 
 
 #Importar dados
@@ -167,6 +168,46 @@ ggplotly(testes_diarios_grafico) %>%
                                        rep("\n&nbsp;", 2)),
                                      collapse = "")))
 
+#Testagem com média rolante 7 dias
+##Fazer a média rolante
+testes_media_rolante <- cbind(data_testes[7:nrow(data_testes),1], rollmean(data_testes[,3], k = 7))
+names(testes_media_rolante) = c("Data", "Testes")
+
+##Fazer o gráfico
+testes_media_rolante_grafico <- ggplot(testes_media_rolante, aes(x = Data, y = Testes)) +
+  geom_line(size = 0.4, color = "cadetblue") +
+  labs(title = "Média Rolante 7 dias",
+       x = "",
+       y = "Número de Testes") +
+  scale_x_date(breaks = "months", date_labels = "%B")
+
+##Fazer com que gráfico seja interativo
+testes_media_rolante_grafico_interativo <- ggplotly(testes_media_rolante_grafico) %>% 
+  layout(yaxis = list(title = paste0(c(rep("&nbsp;", 20),
+                                       "Número de Testes",
+                                       rep("&nbsp;", 20),
+                                       rep("\n&nbsp;", 2)),
+                                     collapse = "")))
+
+###Testagem com média rolante 14 dias
+####Fazer a média rolante
+testes_media_rolante_14 <- cbind(data_testes[14:nrow(data_testes),1], rollmean(data_testes[,3], k = 14))
+names(testes_media_rolante_14) = c("Data", "Testes")
+
+####Fazer o gráfico
+testes_media_rolante_14_grafico <- ggplot(testes_media_rolante_14, aes(x = Data, y = Testes)) +
+  geom_line(size = 0.4, color = "cadetblue") +
+  labs(x = "",
+       y = "Número de Testes") +
+  scale_x_date(breaks = "months", date_labels = "%B")
+
+####Fazer com que gráfico seja interativo
+ggplotly(testes_media_rolante_14_grafico) %>% 
+  layout(yaxis = list(title = paste0(c(rep("&nbsp;", 20),
+                                       "Número de Testes",
+                                       rep("&nbsp;", 20),
+                                       rep("\n&nbsp;", 2)),
+                                     collapse = "")))
 
 
 ##EVOLUÇÃO DA TAXA DE TESTES POSITIVOS
@@ -469,6 +510,54 @@ ggplot(incidencia_regioes_tempo_melt, aes(x = Data, y = Incidencia, color = Regi
         strip.text.y = element_text(size = 8, angle = 0)) +
   scale_x_date(breaks = "months", date_labels = "%B")
 
+##Incidência com média rolante 7 dias
+###Fazer a média rolante
+incidencia_regioes_tempo_media_rolante <- cbind(incidencia_regioes_tempo[7:nrow(incidencia_regioes_tempo),1], as.data.frame(rollmean(incidencia_regioes_tempo[,2:8], k = 7)))
+names(incidencia_regioes_tempo_media_rolante)[1] = "Data"
+
+incidencia_regioes_tempo_media_rolante_melt <- melt(incidencia_regioes_tempo_media_rolante, id.vars = "Data")
+names(incidencia_regioes_tempo_media_rolante_melt) = c("Data", "Regiao", "Incidencia")
+
+###Fazer gráfico
+incidencia_regioes_tempo_media_rolante_melt_grafico <- ggplot(incidencia_regioes_tempo_media_rolante_melt, 
+                                                              aes(x = Data, y = Incidencia, color = Regiao)) +
+  geom_line() +
+  theme(legend.title = element_blank()) +
+  labs(x = "",
+       y = "Incidência") +
+  scale_x_date(breaks = "months", date_labels = "%B")
+
+###Tornar gráfico interativo
+ggplotly(incidencia_regioes_tempo_media_rolante_melt_grafico) %>% 
+  layout(yaxis = list(title = paste0(c(rep("&nbsp;", 20),
+                                       "Incidência",
+                                       rep("&nbsp;", 20),
+                                       rep("\n&nbsp;", 2)),
+                                     collapse = "")),
+         legend = list(x = 1, y = 0))
+
+#Incidência com média rolante 7 dias
+##Fazer a média rolante
+incidencia_regioes_tempo_media_rolante_14 <- cbind(incidencia_regioes_tempo[14:nrow(incidencia_regioes_tempo),1],
+                                                   as.data.frame(rollmean(incidencia_regioes_tempo[,2:8], k = 14)))
+names(incidencia_regioes_tempo_media_rolante_14)[1] = "Data"
+
+incidencia_regioes_tempo_media_rolante_14_melt <- melt(incidencia_regioes_tempo_media_rolante_14, id.vars = "Data")
+names(incidencia_regioes_tempo_media_rolante_14_melt) = c("Data", "Regiao", "Incidencia")
+
+##Fazer gráfico
+incidencia_regioes_tempo_media_rolante_14_melt_grafico <- ggplot(incidencia_regioes_tempo_media_rolante_14_melt, 
+                                                                 aes(x = Data, y = Incidencia, color = Regiao)) +
+  geom_line() +
+  theme(legend.title = element_blank(),
+        axis.text.y = element_text(size = 8),
+        axis.text.x = element_text(size = 7)) +
+  labs(title = "Média Rolante 14 dias",
+       x = "",
+       y = "Incidência") +
+  scale_x_date(breaks = "months", date_labels = "%B")
+
+
 ##mapa
 ###Fazer tabela com novos casos mais recentes
 incidencia_regioes_recente <- as.data.frame(t(as.data.frame(lapply((data[, confirmados_arsnorte:confirmados_madeira])
@@ -746,6 +835,32 @@ casos_total_tempo_grafico <- ggplot(casos_total_tempo_melt, aes(x = Data, y = Ca
 ggplotly(casos_total_tempo_grafico) %>% 
   layout(margin = margin(l =10),
          legend = list(x = 1, y = 0))
+
+###Número de casos com média rolante
+####Calcular a média rolante
+casos_total_tempo_media_rolante <- cbind(casos_total_tempo[7:nrow(casos_total_tempo),1], as.data.frame(rollmean(casos_total_tempo[,2:10],
+                                                                                       k = 7)))
+names(casos_total_tempo_media_rolante)[1] = "Data"
+
+####Fazer melt
+casos_total_tempo_media_rolante_melt <- melt(casos_total_tempo_media_rolante, id.vars = "Data")
+names(casos_total_tempo_media_rolante_melt) = c("Data", "Faixa_Etaria", "Casos")
+
+####Fazer gráfico de linhas
+casos_total_tempo_media_rolante_grafico_linhas <- ggplot(casos_total_tempo_media_rolante_melt, 
+                                                         aes(x = Data, y = Casos, color = Faixa_Etaria)) +
+  geom_line() +
+  labs(x ="", 
+       y = "Incidência") +
+  theme(legend.title = element_blank(),
+        axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        axis.text.y = element_text(size = 5),
+        strip.text.y = element_text(size = 3, angle = 0)) +
+  scale_x_date(breaks = "months", date_labels = "%B")
+
+#Tornar gráfico interativo
+ggplotly(casos_total_tempo_media_rolante_grafico_linhas)
  
 
 
@@ -1605,6 +1720,24 @@ ggplotly(internados_confirmados_grafico) %>%
                                        rep("\n&nbsp;", 2)),
                                      collapse = "")),
          legend = list(x = 1, y = 0))
+
+
+
+##RÁCIO UCI/INTERNADOS
+###Fazer o rácio
+racio_internados <- cbind(data$data, as.data.frame((data$internados_uci/data$internados)*100))
+names(racio_internados) = c("Data", "Racio")
+
+###Fazer o gráfico
+racio_internados_grafico <- ggplot(racio_internados, aes(x = Data, y = Racio)) + 
+  geom_line(color = "tomato4") +
+  labs(x = "",
+       y = "Rácio (%)") +
+  scale_x_date(breaks = "months", date_labels = "%B")
+
+
+###Tornar interativo
+ggplotly(racio_internados_grafico)
 
 
 
