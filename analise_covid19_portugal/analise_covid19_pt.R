@@ -19,7 +19,7 @@ library(zoo)
 
 
 #Importar dados
-data <- fread("https://raw.githubusercontent.com/dssg-pt/data-data/master/data.csv")
+data <- fread("https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/data.csv")
 
 #Data de data, de chr para Date
 data$data <- as.Date(data$data,"%d-%m-%Y")
@@ -31,13 +31,13 @@ data_testes <- fread("https://raw.githubusercontent.com/dssg-pt/data-data/master
 data_testes$data <- as.Date(data_testes$data,"%d-%m-%Y")
 
 #Dados por concelho
-data_concelhos <- fread("https://raw.githubusercontent.com/dssg-pt/data-data/master/data_concelhos.csv")
+data_concelhos <- fread("https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/data_concelhos.csv")
 
 #Data de data_concelhos, de chr para Date
 data_concelhos$data <- as.Date(data_concelhos$data,"%d-%m-%Y")
 
 #Mapa de Portugal Regiões
-mapa_pt <- geojson_read("https://raw.githubusercontent.com/dssg-pt/data-data/master/extra/mapas/portugal.geojson",
+mapa_pt <- geojson_read("https://raw.githubusercontent.com/dssg-pt/covid19pt-data/master/extra/mapas/portugal.geojson",
                         what = "sp")
 
 #Mapa de Portugal por Concelhos em <https://dados.gov.pt/pt/datasets/concelhos-de-portugal/>
