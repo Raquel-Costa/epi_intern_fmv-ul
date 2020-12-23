@@ -15,6 +15,9 @@ Contém o trabalho realizado durante 4 meses, entre Setembro e Dezembro de 2020.
 
 #### Análises Realizadas 🕵
 <ul>
-  <li>COVID19 em Portugal</li>
+  <li>COVID19 em Portugal - R e R markdown</li>
+  <li>Mobilidade em Portugal durante a pandemia - R e R markdown</li>
+  <li>COVID19 e mobilidade durante a pandemia em Portugal e no Mundo - Shiny App</li>
+  <li>Explorações de suinos - SQL</li>
 </ul>
   
