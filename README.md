@@ -20,4 +20,17 @@ Contém o trabalho realizado durante 4 meses, entre Setembro e Dezembro de 2020.
   <li>COVID19 e mobilidade durante a pandemia em Portugal e no Mundo - Shiny App</li>
   <li>Explorações de suinos - SQL</li>
 </ul>
-  
+
+
+#### Cursos Realizados 📔
+ <ul>
+  <li><a href='https://www.coursera.org/specializations/statistics#courses'>Statistics with R</a></li>
+  <ul>
+    <li>Introduction to Probability and Data with R</li>
+    <li>Inferential Statistics</li>
+    <li>Linear Regression and Modeling</li>
+    <li>Bayesian Statistics</li>
+  </ul> 
+  <li><a href='https://www.coursera.org/learn/metagenomics'>Metagenomics applied to surveillance of pathogens and antimicrobial resistance</a></li>
+  <li><a href='https://www.coursera.org/learn/wgs-bacteria'>Whole genome sequencing of bacterial genomes - tools and applications</a></li>
+  <li><a href='https://www.coursera.org/learn/machine-learning'>Machine Learning</a> (Theory)</li>
