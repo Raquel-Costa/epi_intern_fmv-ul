@@ -815,7 +815,7 @@ shinyApp(
         
       #more information on the next steps after the upload
         output$explainnext2 <- renderText({
-          "It's all done! Now it should appear 3 boxes where you can choose a country, a district and a region. "
+          "It's all done! Now it should appear 3 boxes where you can choose a country, a district and a county. "
         })
          
         

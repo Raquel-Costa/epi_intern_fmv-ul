@@ -1,0 +1,10 @@
+name: covid19_portugal_world_shiny
+title:
+username:
+account: raqueldelobocosta
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3441927
+bundleId: 4057520
+url: https://raqueldelobocosta.shinyapps.io/covid19_portugal_world_shiny/
+when: 1609784634.0691
