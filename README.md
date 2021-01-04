@@ -15,10 +15,10 @@ It contains the work developed for 4 months, between September and December 2020
 
 #### Analysis Performed 🕵
 <ul>
-  <li>COVID19 in Portugal - R and R markdown</li>
+  <li><a href = 'https://github.com/Raquel-Costa/epi_intern_fmv-ul/blob/master/covid19_portugal/report_covid19_pt.Rmd'>COVID19 in Portugal</a> - R and R markdown</li>
   <li><a href='https://github.com/Raquel-Costa/epi_intern_fmv-ul/blob/master/covid19_mobility_portugal/report_mobility.Rmd'>Mobility in Portugal during the pandemic</a> - R and R markdown</li>
-  <li>COVID19 and mobility during the pandemic in Portugal and the world - Shiny App</li>
-  <li>Swine Production in Portugal - MySQL</li>
+  <li><a href = 'https://raqueldelobocosta.shinyapps.io/covid19_portugal_world_shiny/'>COVID19 and mobility during the pandemic in Portugal and the world</a> - Shiny App</li>
+  <li><a href = 'https://github.com/Raquel-Costa/epi_intern_fmv-ul/blob/master/swine_production_portugal/analysis_swine_production_pt.sql'>Swine Production in Portugal</a> - MySQL</li>
 </ul>
 
 
