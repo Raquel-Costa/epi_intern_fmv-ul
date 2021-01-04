@@ -1,28 +1,28 @@
-# Preparação Estágio Epidemiologia 👩💻
+# Epidemiology Intenship at Faculty of Veterinary Medicine, University of Lisbon 👩💻
 
-Este repositório contém tudo o que foi realizado por mim durante a preparação para o meu estágio curricular em epidemiologia.
-Contém o trabalho realizado durante 4 meses, entre Setembro e Dezembro de 2020.
+This repository includes the work I developed during my epidemiology internship.
+It contains the work developed for 4 months, between September and December 2020.
 
-#### Objetivos 🤓
+#### Goals 🤓
 <ul>
-  <li>Aprendizagem de competências básicas de análise de dados com foco na análise epidemiológica usando o programa R</li>
-  <li>Aprendizagem e aplicação de conceitos mais avançados de epidemiologia</li>
-  <li>Introdução aos sistemas de informação geográfica</li>
-  <li>Desenvolvimento do pensamento crítico para a solução de problemas</li>
-  <li>Desenvolvimento das competências de apresentação de resultados</li>
+  <li>Learn basic data analysis skills focused on epidemiological analysis using R programming language</li>
+  <li>Learn and application of more advanced epidemiology concepts</li>
+  <li>Introduction to geographic information systems (GIS)</li>
+  <li>Develop critical thinking for problem solving</li>
+  <li>Develop results' presentation skills</li>
 </ul>
 
 
-#### Análises Realizadas 🕵
+#### Analysis Performed 🕵
 <ul>
-  <li>COVID19 em Portugal - R e R markdown</li>
-  <li>Mobilidade em Portugal durante a pandemia - R e R markdown</li>
-  <li>COVID19 e mobilidade durante a pandemia em Portugal e no Mundo - Shiny App</li>
-  <li>Explorações de suinos - SQL</li>
+  <li>COVID19 in Portugal - R and R markdown</li>
+  <li>Mobility in Portugal during the pandemic - R and R markdown</li>
+  <li>COVID19 and mobility during the pandemic in Portugal and the world - Shiny App</li>
+  <li>Swine Production in Portugal - MySQL</li>
 </ul>
 
 
-#### Cursos Realizados 📔
+#### Online Courses Taken 📔
  <ul>
   <li><a href='https://www.coursera.org/specializations/statistics#courses'>Statistics with R</a></li>
   <ul>
