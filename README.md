@@ -9,7 +9,7 @@ It contains the work developed for 4 months, between September and December 2020
   <li>Learn and application of more advanced epidemiology concepts</li>
   <li>Introduction to geographic information systems (GIS)</li>
   <li>Develop critical thinking for problem solving</li>
-  <li>Develop results' presentation skills</li>
+  <li>Develop results presentation skills</li>
 </ul>
 
 
